@@ -30,10 +30,26 @@ class TableTop:
         else:
             return True
 
-#function to place object(could be robot or obstacle) on board for first time     
+#function to place object(could be robot or obstacle) on board     
     def place_object(self,theObj,row = 0,column = 0):
 #check if position is occupied
         if self.is_free(row,column):
             self.play_area[row][column] = theObj
         else:
             return False
+#function to remove object from playboard
+#returns false if there was no object to remove
+#returns true if an object was removed
+#either way the row,column at the end will contain None    
+    def remove_object(self,row,column):
+        if self.play_area[row][column] is not None:
+            self.play_area[row][column] = None
+        else:
+            return False
+#find the position of an object on the play area
+    def find_object(self,theObj):
+        for j in range(len(self.play_area)):
+            for i in range(len(self.play_area[j])):
+                if self.play_area[j][i] is theObj:
+                    return {"row" : j,"column" : i}
+        return False
