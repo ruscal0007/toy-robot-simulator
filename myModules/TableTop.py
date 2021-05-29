@@ -38,12 +38,15 @@ class TableTop:
 #facing direction is passed as a string but stored as an integer so rotation can be performed by incrementing or decrementing value     
     def place_object(self,theObj,facing = "NORTH", row = 0,column = 0):
 #check if position is occupied
-        if self.is_free(row,column):
-            self.play_area[row][column] = [theObj,self.facing_direction.index(facing)]
-            return True
-        else:
+        try :
+            if self.is_free(row,column):
+                self.play_area[row][column] = [theObj,self.facing_direction.index(facing)]
+                return True
+            else:
+                return False
+        #if an error occurs due to invalid row, column or other object placement will fail and return false            
+        except:
             return False
-
 
 #function to remove object from playboard
 #returns false if there was no object to remove
@@ -65,5 +68,8 @@ class TableTop:
         return False
 # rotate object on playfield , steps are positive for clockwise , steps are negative for anti-clockwise    
     def rotate_object(self,theObj,steps = 1):
-        location = self.find_oject(theObj)
-        self.play_area[location["row"]][location["column"]][1] = (self.facing_direction.index(location["facing"])+ steps) % len(self.facing_direction)
+        location = self.find_object(theObj)
+        if location == False:
+            return False
+        else:
+            self.play_area[location["row"]][location["column"]][1] = (self.facing_direction.index(location["facing"])+ steps) % len(self.facing_direction)
