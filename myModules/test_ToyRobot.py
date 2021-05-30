@@ -99,7 +99,7 @@ def test_move_on_tabletop():
     assert TR.report() == "4,3,EAST"
     assert TR.move() == False
     assert TR.report() == "4,3,EAST"
-    
-    
+    TR.place("NORTH",0,0)
+    assert TR.report() == "0,0,NORTH"
     
     

@@ -108,8 +108,13 @@ class ToyRobot:
             failed to play ToyRobot on PlayTable play_are.
 
         """
-        #check to see if robot already on TableTop (shouldnt place twice !)
-        if self.PlayTable.find_object(self) == False:
+        # scope says PLACE can be executed multiple times
+        location = self.PlayTable.find_object(self)
+        if  location == False:
+            return self.PlayTable.place_object(self,facing,row,column)
+        else:
+            #robots already on table so remove and replace
+            self.PlayTable.remove_object(location["row"],location["column"])
             return self.PlayTable.place_object(self,facing,row,column)
         return False
     

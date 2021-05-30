@@ -1,10 +1,11 @@
 # Toy Robot Simulator
 
-Foobar is a Python library for dealing with word pluralization.
+
 
 ## Description
 
 Simulates a toy robot moving on a tabletop.  Robot will not follow commands that would cause it to fall from the tabletop
+Commands are read in from a standard text file. see example_a.txt example_b.txt example_c.txt for examples
 
 ## Valid Commands
 
@@ -25,12 +26,6 @@ Simulates a toy robot moving on a tabletop.  Robot will not follow commands that
   currently facing.
 - LEFT and RIGHT will rotate the robot 90 degrees in the specified direction
   without changing the position of the robot.
-- REPORT will announce the X,Y and F of the robot. This can be in any form,
-  but standard output is sufficient.
+- REPORT will announce the X,Y and F of the robot
 
-- A robot that is not on the table can choose the ignore the MOVE, LEFT, RIGHT
-  and REPORT commands.
-- Input can be from a file, or from standard input, as the developer chooses.
-- Provide test data to exercise the application.
-- The application must be a command line application.
-
+## Usage
