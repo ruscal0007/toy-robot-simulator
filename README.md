@@ -29,3 +29,27 @@ Commands are read in from a standard text file. see example_a.txt example_b.txt 
 - REPORT will announce the X,Y and F of the robot
 
 ## Usage
+        Usage : toy-robot.py <filename> 
+        
+        Where <filename> is a txt file containing valid ToyRobot commands
+
+        Position 0,0 is the SOUTH WEST corner of the play area
+        
+    
+        Valid commands :
+            PLACE X,Y,F
+                X,Y position on play area
+                F direction robot is facing
+                Valid X,Y values 0-4 
+                Valid F values "NORTH","EAST","SOUTH","WEST"
+            MOVE
+                move ToyRobot forward one square on play area
+            LEFT
+                rotate facing direciton anti-clockwise
+            RIGHT
+                rotate facing direction clockwise
+            REPORT
+                show current X,Y,F on pplay area
+                
+## examples
+    See example files named example_x.txt where x is a number
