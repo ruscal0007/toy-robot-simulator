@@ -18,6 +18,6 @@ def test_default_play_area_size():
     
 def test_custom_pay_area_size():
     TT = TableTop(20,50)
-    assert len(TT.play_area[0]) == 20
-    assert len(TT.play_area[1]) == 50
+    assert len(TT.play_area) == 20
+    assert len(TT.play_area[0]) == 50
     
