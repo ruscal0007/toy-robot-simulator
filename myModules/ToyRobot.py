@@ -2,7 +2,7 @@
 """
 Created on Sat May 29 11:54:59 2021
 
-@author: ben
+@author: ruscal
 """
 
 class ToyRobot:
@@ -38,7 +38,18 @@ class ToyRobot:
                 return False
     
     def place(self,facing = "NORTH",row = 0 ,column = 0):
-        return self.PlayTable.place_object(self,facing,row,column)
+        #check to see if robot already on TableTop (shouldnt place twice !)
+        if self.PlayTable.find_object(self) == False:
+            return self.PlayTable.place_object(self,facing,row,column)
+        return False
+    
+    def remove(self):
+        #check to see if robot on TableTop
+        location = self.PlayTable.find_object(self)
+        if location == False:
+            return False
+        return self.PlayTable.remove_object(location["row"],location["column"])
+    
     
     #Function to rotate robot left(anti-clockwise) on the TableTop     
     def rotate_left(self):
@@ -57,7 +68,7 @@ class ToyRobot:
     def report(self):
         location = self.PlayTable.find_object(self)
         if location == False:
-            print("ToyRobot not placed on table")
+            return False
         else:
-            print(str(location["row"]) + "," + str(location["column"])  + "," + location["facing"])
+            return(str(location["row"]) + "," + str(location["column"])  + "," + location["facing"])
             

@@ -22,20 +22,20 @@ class TableTop:
                 column.append(None)
             self.play_area.append(column)
 
-    def showfield(self):
-
-#Print out the playfield in a nice format
-#for now just dumping it, will fix later
-        print(self.play_area)
-        
+    #  returns True if nothing is found in desired position
     def is_free(self,row,column):
-        if self.play_area[row][column] is not None:
-            return False
-        else:
-            return True
-
-#function to place object(could be robot or obstacle) on board facing in a certain direction
-#facing direction is passed as a string but stored as an integer so rotation can be performed by incrementing or decrementing value     
+    # check if indexes are valid 
+        if 0 <= row < len(self.play_area):
+            if 0 <= column < len(self.play_area[0]):
+                if self.play_area[row][column] is not None:
+                    return False
+                else:
+                    # if code gets here nothing is in the desired position on play area
+                    return True
+        return False
+    
+#function to place object(could be robot or obstacle) on board facing "NORTH","EAST","SOUTH" or "WEST"
+#will  return false for failed placement
     def place_object(self,theObj,facing = "NORTH", row = 0,column = 0):
 #check if position is occupied
         try :
@@ -49,12 +49,10 @@ class TableTop:
             return False
 
 #function to remove object from playboard
-#returns false if there was no object to remove
-#returns true if an object was removed
-#either way the row,column at the end will contain None    
     def remove_object(self,row,column):
         if self.play_area[row][column] is not None:
             self.play_area[row][column] = None
+            return True
         else:
             return False
 
